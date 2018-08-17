@@ -10,6 +10,7 @@ function createHelperMenuDom() {
             <li><button class="bbpr-display-all-btn">Display all reviewed diffs</button></li>
             <li><button class="bbpr-hide-all-btn">Hide all reviewed diffs</button></li>
             <li><button class="bbpr-mark-all">Mark all files as reviewed</button></li>
+            <li><button class="bbpr-mark-all-tests">Mark all tests as reviewed</button></li>
             <li><button class="bbpr-mark-all-snapshots">Mark all snapshots as reviewed</button></li>
             <li><button class="bbpr-unmark-all">Mark all files as unreviewed</button></li>
         </ul>
@@ -60,6 +61,13 @@ function setAllToReviewed() {
     closeMenu();
 }
 
+function setAllTestsToReviewed() {
+    getAllFileDiffs().forEach((fileDiff) => {
+        if (fileDiff.element.id.includes('.test.')) fileDiff.setReviewed();
+    });
+    closeMenu();
+}
+
 function setAllSnapshotsToReviewed() {
     getAllFileDiffs().forEach((fileDiff) => {
         if (fileDiff.element.id.includes('.snap')) fileDiff.setReviewed();
@@ -77,6 +85,7 @@ function addHelperMenuEventListeners(menuContainer) {
     const displayAllButton = menuContainer.querySelector('.bbpr-display-all-btn');
     const hideAllButton = menuContainer.querySelector('.bbpr-hide-all-btn');
     const markAllButton = menuContainer.querySelector('.bbpr-mark-all');
+    const markAllTestsButton = menuContainer.querySelector('.bbpr-mark-all-tests');
     const markAllSnapshotsButton = menuContainer.querySelector('.bbpr-mark-all-snapshots');
     const unmarkAllButton = menuContainer.querySelector('.bbpr-unmark-all');
 
@@ -84,6 +93,7 @@ function addHelperMenuEventListeners(menuContainer) {
     displayAllButton.addEventListener('click', displayAll);
     hideAllButton.addEventListener('click', hideAll);
     markAllButton.addEventListener('click', setAllToReviewed);
+    markAllTestsButton.addEventListener('click', setAllTestsToReviewed);
     markAllSnapshotsButton.addEventListener('click', setAllSnapshotsToReviewed);
     unmarkAllButton.addEventListener('click', setAllToUnreviewed);
 

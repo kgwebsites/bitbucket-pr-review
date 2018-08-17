@@ -1,4 +1,12 @@
 @charset "UTF-8";
+#announcement {
+  animation: fadeOut 2s ease-out 5s; }
+
+@keyframes fadeOut {
+  from {
+    top: 0; }
+  to {
+    height: -40; } }
 .bbpr-menu {
   display: block;
   position: relative;
@@ -64,7 +72,7 @@
     border-bottom-left-radius: 0; }
   .bbpr-menu.bbpr-open .bbpr-menu-items {
     opacity: 1;
-    max-height: 10em;
+    max-height: 12em;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); }
 
 ul.commit-files-summary li.bbpr-reviewed a {
@@ -78,15 +86,16 @@ ul.commit-files-summary li.bbpr-reviewed::after,
   color: #0b0;
   content: '✔'; }
 
+.bb-udiff .heading {
+  position: sticky;
+  top: 0;
+  z-index: 10; }
 .bb-udiff .bbpr-buttons button .bbpr-done {
   display: none; }
-
 .bb-udiff.bbpr-reviewed .bbpr-buttons button .bbpr-not-done {
   display: none; }
-
 .bb-udiff.bbpr-reviewed .bbpr-buttons button .bbpr-done {
   display: inline; }
-
 #pullrequest-diff:not(.bbpr-open-all-diffs) .bb-udiff.bbpr-reviewed {
   min-height: 0; }
   #pullrequest-diff:not(.bbpr-open-all-diffs) .bb-udiff.bbpr-reviewed .heading {
@@ -94,3 +103,5 @@ ul.commit-files-summary li.bbpr-reviewed::after,
     border-radius: 5px; }
   #pullrequest-diff:not(.bbpr-open-all-diffs) .bb-udiff.bbpr-reviewed .diff-content-container {
     display: none; }
+
+/*# sourceMappingURL=style.css.map */
