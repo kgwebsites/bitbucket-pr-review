@@ -4,6 +4,15 @@ This is a forked version of [bitbucket-pr-review](https://github.com/reywood/bit
 -   Close all test files
 -   Bitbucket file titles become sticky so the file action buttons come along for the ride when you're scrolling large files.
 
+### Installation
+
+To install, you must install this repo as an unpackaged extension.
+
+1. Download or clone the repo.
+2. Open Chrome Extensions, and make sure the "Developer Mode" option is checked in the upper top corner.
+3. Click Load unpacked and select the downloaded repo directory.
+4. Go to any bitbucket PR and enjoy the goodies
+
 ```
 During the back and forth of reviewing a large pull request, it's easy to lose track of
 what you've already reviewed and what you haven't. This extension adds a new button to
