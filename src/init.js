@@ -1,4 +1,13 @@
+const fileTypes = {};
+
 function createHelperMenuDom() {
+    const allFileTypes = Object.entries(fileTypes);
+    let allFileTypeButtons = '';
+    allFileTypes.forEach(type => {
+        allFileTypeButtons += `
+            <li><button class="bbpr-mark-all-files" id="mark-all-${type[0]}">Mark all .${type[0]} (${type[1]}) files as reviewd</button></li>
+        `;
+    });
     const menuContainer = document.createElement('div');
     menuContainer.id = 'bbpr-menu';
     menuContainer.className = 'bbpr-menu';
@@ -10,8 +19,7 @@ function createHelperMenuDom() {
             <li><button class="bbpr-display-all-btn">Display all reviewed diffs</button></li>
             <li><button class="bbpr-hide-all-btn">Hide all reviewed diffs</button></li>
             <li><button class="bbpr-mark-all">Mark all files as reviewed</button></li>
-            <li><button class="bbpr-mark-all-tests">Mark all tests as reviewed</button></li>
-            <li><button class="bbpr-mark-all-snapshots">Mark all snapshots as reviewed</button></li>
+            ${allFileTypeButtons}
             <li><button class="bbpr-unmark-all">Mark all files as unreviewed</button></li>
         </ul>
     `;
@@ -21,6 +29,15 @@ function createHelperMenuDom() {
 function getAllFileDiffs() {
     return Array.from(document.querySelectorAll('#changeset-diff .bb-udiff'))
         .map(section => new FileDiff(section));
+}
+
+function addFileType(filepath) {
+    const file = filepath.split('/').reverse()[0];
+    let type = file.split('.');
+    type.shift();
+    type = type.join('.');
+    if (!fileTypes[type]) fileTypes[type] = 1;
+    else fileTypes[type] += 1;
 }
 
 function toggleMenu() {
@@ -61,16 +78,10 @@ function setAllToReviewed() {
     closeMenu();
 }
 
-function setAllTestsToReviewed() {
+function setAllFilesToReviewed(fileTypeSelect) {
+    const fileTypeExt = `.${fileTypeSelect.target.id.split('-').reverse()[0]}`;
     getAllFileDiffs().forEach((fileDiff) => {
-        if (fileDiff.element.id.includes('.test.')) fileDiff.setReviewed();
-    });
-    closeMenu();
-}
-
-function setAllSnapshotsToReviewed() {
-    getAllFileDiffs().forEach((fileDiff) => {
-        if (fileDiff.element.id.includes('.snap')) fileDiff.setReviewed();
+        if (fileDiff.element.id.includes(fileTypeExt)) fileDiff.setReviewed();
     });
     closeMenu();
 }
@@ -85,16 +96,14 @@ function addHelperMenuEventListeners(menuContainer) {
     const displayAllButton = menuContainer.querySelector('.bbpr-display-all-btn');
     const hideAllButton = menuContainer.querySelector('.bbpr-hide-all-btn');
     const markAllButton = menuContainer.querySelector('.bbpr-mark-all');
-    const markAllTestsButton = menuContainer.querySelector('.bbpr-mark-all-tests');
-    const markAllSnapshotsButton = menuContainer.querySelector('.bbpr-mark-all-snapshots');
+    const markAllFilesButton = menuContainer.querySelectorAll('.bbpr-mark-all-files');
     const unmarkAllButton = menuContainer.querySelector('.bbpr-unmark-all');
 
     menuButton.addEventListener('click', toggleMenu);
     displayAllButton.addEventListener('click', displayAll);
     hideAllButton.addEventListener('click', hideAll);
     markAllButton.addEventListener('click', setAllToReviewed);
-    markAllTestsButton.addEventListener('click', setAllTestsToReviewed);
-    markAllSnapshotsButton.addEventListener('click', setAllSnapshotsToReviewed);
+    markAllFilesButton.forEach(btn => btn.addEventListener('click', setAllFilesToReviewed));
     unmarkAllButton.addEventListener('click', setAllToUnreviewed);
 
     document.body.addEventListener('click', closeMenuOnBodyClick);
@@ -165,19 +174,18 @@ function waitForAnotherChanceFilesLoad(previousAttemptFileCount, tries = 0) {
 }
 
 function init() {
-    initHelperMenu();
-
     const fileDiffs = getAllFileDiffs();
     fileDiffs.forEach((fileDiff) => {
         fileDiff.initUI();
         repeatInitUIToWorkAroundCommentLoadIssue(fileDiff);
+        addFileType(fileDiff.filepath)
     });
+    initHelperMenu();
 
     waitForAnotherChanceFilesLoad(0);
 
     if (window.location.hash.indexOf('#chg-') >= 0) {
         const identifier = window.location.hash.substring(5);
-
         const fileSectionSelector = `#changeset-diff .bb-udiff[data-path="${identifier}"]`;
         waitForFileSectionLoad(fileSectionSelector);
     }
@@ -194,16 +202,11 @@ function isDiffTabActive() {
 }
 
 function waitForDiffLoad() {
-    if (!isDiffTabActive()) {
-        return;
-    }
+    if (!isDiffTabActive()) return;
 
     const isDiffDomLoaded = !!document.querySelector('#pullrequest-diff .main');
-    if (isDiffDomLoaded) {
-        init();
-    } else {
-        setTimeout(waitForDiffLoad, 100);
-    }
+    if (isDiffDomLoaded) init();
+    else setTimeout(waitForDiffLoad, 100);
 }
 
 function addDiffTabClickHandler() {
