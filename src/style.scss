@@ -1,3 +1,5 @@
+@import '_monokai-bitbucket-styles';
+
 $button-bg-color: #f5f5f5;
 $button-hover-bg-color: lighten($button-bg-color, 5%);
 $button-border-color: #ccc;
@@ -17,12 +19,10 @@ $button-border-radius: 4px;
     position: relative;
     margin: 1em 0;
     text-align: right;
-
     .bbpr-menu-btn {
         -webkit-appearance: button;
         display: inline-block;
-        border: 1px solid $button-border-color;
-        border-radius: $button-border-radius;
+        border: 0;
         padding: 6px 12px;
         background-color: $button-bg-color;
         background-image: none;
@@ -34,31 +34,25 @@ $button-border-radius: 4px;
     }
 
     .bbpr-menu-items {
-        // display: none;
         opacity: 0;
         z-index: 100000;
         position: absolute;
         top: 100%;
         right: 0;
         max-height: 0;
-        margin: -1px 0 0;
-        border: 1px solid $button-border-color;
-        border-top-left-radius: $button-border-radius;
-        border-bottom-right-radius: $button-border-radius;
-        border-bottom-left-radius: $button-border-radius;
+        margin: 5px 0 0;
+        box-shadow: none;
         padding: 0;
-        overflow: hidden;
+        overflow-y: scroll;
         background-color: $button-bg-color;
         list-style: none;
         text-align: left;
         transition: max-height .5s, opacity .5s;
         transition-timing-function: cubic-bezier(.29, 1.01, .52, 1);
         box-sizing: border-box;
-
         li {
             margin: 0;
             padding: 0;
-
             button {
                 -webkit-appearance: none;
                 display: block;
@@ -120,7 +114,7 @@ ul.commit-files-summary li.bbpr-reviewed::after,
 .bb-udiff.bbpr-reviewed .bbpr-buttons button .bbpr-done::after {
     display: inline-block;
     padding-left: .5em;
-    color: #0b0;
+    color: #AADB7B;
     content: '✔';
 }
 

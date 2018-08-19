@@ -1,8 +1,8 @@
 This is a forked version of [bitbucket-pr-review](https://github.com/reywood/bitbucket-pr-review) with additional features such as:
 
--   Close all snapshot files
--   Close all test files
+-   Close all files by a specific file type. (All file types are loaded on init)
 -   Bitbucket file titles become sticky so the file action buttons come along for the ride when you're scrolling large files.
+-   Themes!
 
 ### Installation
 
@@ -13,6 +13,12 @@ To install, you must install this repo as an unpackaged extension.
 3. Click Load unpacked and select the downloaded repo directory.
 4. Go to any bitbucket PR and enjoy the goodies
 
+### Themes
+##### (Beta)
+
+To configure a theme for your PRs, go to the Extension Details and click `Extension Options` to select your theme.
+
+### Original Repo README
 ```
 During the back and forth of reviewing a large pull request, it's easy to lose track of
 what you've already reviewed and what you haven't. This extension adds a new button to

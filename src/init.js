@@ -1,3 +1,9 @@
+// Get the theme as set in the extension options
+chrome.storage.sync.get({theme: ''}, ({theme}) => {
+    document.getElementById('pullrequest-diff').classList += theme;
+});
+
+// Initialize File Types Mapping
 const fileTypes = {};
 
 function createHelperMenuDom() {
@@ -5,7 +11,7 @@ function createHelperMenuDom() {
     let allFileTypeButtons = '';
     allFileTypes.forEach(type => {
         allFileTypeButtons += `
-            <li><button class="bbpr-mark-all-files" id="mark-all-${type[0]}">Mark all .${type[0]} (${type[1]}) files as reviewd</button></li>
+            <li><button class="bbpr-mark-all-files" id="mark-all-${type[0]}">Mark all .${type[0]} (${type[1]}) files as reviewed</button></li>
         `;
     });
     const menuContainer = document.createElement('div');

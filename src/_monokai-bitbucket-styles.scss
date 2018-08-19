@@ -1,0 +1,164 @@
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css);
+
+$white: #FCFCFA;
+$black: #19181A;
+$grey-dark: #221F22;
+$grey: #333333;
+$grey-light: #555356;
+$red: #FC6389;
+$green: #AADB7B;
+$blue: #7CDCE7;
+$yellow: #FED76F;
+$orange: #FA986C;
+$purple: #AB9FF0;
+
+body #content .monokai {
+  .bb-udiff .heading {
+    background-color: #231f23;
+    h1.filename, h1.filename {
+      color: $white;
+    }
+    .diff-entry-kind-icon  {
+      color: $purple;
+    }
+    .diff-actions .aui-buttons {
+      .aui-button {
+        color: $white;
+        .aui-icon {
+          color: $yellow;
+          &:hover {
+            color: $orange;
+          }
+        }
+        &:hover {
+          color: $yellow;
+        }
+      }
+    }
+  }
+
+  .refract-container {
+    .refract-content-container {
+      .line-numbers {
+        background-color: $grey-dark;
+        color: $white;
+      }
+      .source {
+        background-color: $grey;
+        color:$white;
+        font-family: 'Fira Code';
+        font-size: 12.5px;
+      }
+    }
+
+    .addition pre.source {
+      background-color: $green !important;
+      color: $grey-dark;
+      font-weight: 500;
+      &:hover {
+        background-color: #b5db90!important;
+      }
+    }
+
+    .deletion pre.source {
+      background-color: $red !important;
+      color: $grey-dark;
+      font-weight: 500;
+      &:hover {
+        background-color: #fc8ba7 !important;
+      }
+    }
+
+    &.word-diff:not(.disable-word-diff) {
+      .addition pre.source ins, .deletion pre.source del {
+        background-color: $white;
+      }
+    }
+
+    .udiff-line {
+      transition: all .25s ease-in-out;
+      &:hover, &:target {
+        background-color: $grey-light;
+        .gutter {
+          background-color: $grey-light;
+          a.line-numbers {
+            background-color: $grey-light;
+          }
+        }
+        .source {
+          background-color: $grey-light;
+        }
+      }
+      .gutter {
+        background-color: $grey-dark;
+        &:hover, &:target {
+          a.line-numbers {
+            &:before, &:after {
+              color: $white;
+            }
+          }
+        }
+        &:target+.source {
+          background: $yellow;
+          color: $grey;
+        }
+      }
+
+      .line-numbers {
+        &:hover, &.permalinked {
+          &::after, &::before {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    .line-numbers-skipped {
+      background-color: $grey-dark;
+    }
+
+    .line-numbers {
+      &::after, &::before {
+        color: $white;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .skipped-container {
+      background-color: $grey;
+      .ellipsis {
+        background-color: $black;
+        border-color: $black;
+        box-shadow: 0 0 0 2px $black;
+        color: $yellow;
+        &:hover {
+          background-color: $grey-light;
+          box-shadow: 0 0 0 2px $grey-light;
+          border-color: $grey-light;
+        }
+      }
+      .skipped-top {
+        &::before {
+          background: $grey-dark;
+        }
+      }
+      .skipped-middle::before {
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $white;
+      }
+      &::after {
+        background-color: $grey-dark;
+        max-width: 100%;
+      }
+    }
+
+    .add-line-comment, .add-line-comment:hover {
+      color: $purple;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

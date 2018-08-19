@@ -1,4 +1,90 @@
 @charset "UTF-8";
+@import url(https://cdn.rawgit.com/tonsky/FiraCode/1.205/distr/fira_code.css);
+body #content .monokai .bb-udiff .heading {
+  background-color: #231f23; }
+  body #content .monokai .bb-udiff .heading h1.filename, body #content .monokai .bb-udiff .heading h1.filename {
+    color: #FCFCFA; }
+  body #content .monokai .bb-udiff .heading .diff-entry-kind-icon {
+    color: #AB9FF0; }
+  body #content .monokai .bb-udiff .heading .diff-actions .aui-buttons .aui-button {
+    color: #FCFCFA; }
+    body #content .monokai .bb-udiff .heading .diff-actions .aui-buttons .aui-button .aui-icon {
+      color: #FED76F; }
+      body #content .monokai .bb-udiff .heading .diff-actions .aui-buttons .aui-button .aui-icon:hover {
+        color: #FA986C; }
+    body #content .monokai .bb-udiff .heading .diff-actions .aui-buttons .aui-button:hover {
+      color: #FED76F; }
+body #content .monokai .refract-container .refract-content-container .line-numbers {
+  background-color: #221F22;
+  color: #FCFCFA; }
+body #content .monokai .refract-container .refract-content-container .source {
+  background-color: #333333;
+  color: #FCFCFA;
+  font-family: 'Fira Code';
+  font-size: 12.5px; }
+body #content .monokai .refract-container .addition pre.source {
+  background-color: #AADB7B !important;
+  color: #221F22;
+  font-weight: 500; }
+  body #content .monokai .refract-container .addition pre.source:hover {
+    background-color: #b5db90 !important; }
+body #content .monokai .refract-container .deletion pre.source {
+  background-color: #FC6389 !important;
+  color: #221F22;
+  font-weight: 500; }
+  body #content .monokai .refract-container .deletion pre.source:hover {
+    background-color: #fc8ba7 !important; }
+body #content .monokai .refract-container.word-diff:not(.disable-word-diff) .addition pre.source ins, body #content .monokai .refract-container.word-diff:not(.disable-word-diff) .deletion pre.source del {
+  background-color: #FCFCFA; }
+body #content .monokai .refract-container .udiff-line {
+  transition: all .25s ease-in-out; }
+  body #content .monokai .refract-container .udiff-line:hover, body #content .monokai .refract-container .udiff-line:target {
+    background-color: #555356; }
+    body #content .monokai .refract-container .udiff-line:hover .gutter, body #content .monokai .refract-container .udiff-line:target .gutter {
+      background-color: #555356; }
+      body #content .monokai .refract-container .udiff-line:hover .gutter a.line-numbers, body #content .monokai .refract-container .udiff-line:target .gutter a.line-numbers {
+        background-color: #555356; }
+    body #content .monokai .refract-container .udiff-line:hover .source, body #content .monokai .refract-container .udiff-line:target .source {
+      background-color: #555356; }
+  body #content .monokai .refract-container .udiff-line .gutter {
+    background-color: #221F22; }
+    body #content .monokai .refract-container .udiff-line .gutter:hover a.line-numbers:before, body #content .monokai .refract-container .udiff-line .gutter:hover a.line-numbers:after, body #content .monokai .refract-container .udiff-line .gutter:target a.line-numbers:before, body #content .monokai .refract-container .udiff-line .gutter:target a.line-numbers:after {
+      color: #FCFCFA; }
+    body #content .monokai .refract-container .udiff-line .gutter:target + .source {
+      background: #FED76F;
+      color: #333333; }
+  body #content .monokai .refract-container .udiff-line .line-numbers:hover::after, body #content .monokai .refract-container .udiff-line .line-numbers:hover::before, body #content .monokai .refract-container .udiff-line .line-numbers.permalinked::after, body #content .monokai .refract-container .udiff-line .line-numbers.permalinked::before {
+    color: #FCFCFA; }
+body #content .monokai .refract-container .line-numbers-skipped {
+  background-color: #221F22; }
+body #content .monokai .refract-container .line-numbers::after, body #content .monokai .refract-container .line-numbers::before {
+  color: #FCFCFA; }
+body #content .monokai .refract-container .line-numbers:focus {
+  outline: none; }
+body #content .monokai .refract-container .skipped-container {
+  background-color: #333333; }
+  body #content .monokai .refract-container .skipped-container .ellipsis {
+    background-color: #19181A;
+    border-color: #19181A;
+    box-shadow: 0 0 0 2px #19181A;
+    color: #FED76F; }
+    body #content .monokai .refract-container .skipped-container .ellipsis:hover {
+      background-color: #555356;
+      box-shadow: 0 0 0 2px #555356;
+      border-color: #555356; }
+  body #content .monokai .refract-container .skipped-container .skipped-top::before {
+    background: #221F22; }
+  body #content .monokai .refract-container .skipped-container .skipped-middle::before {
+    border-top: 1px solid #FCFCFA;
+    border-bottom: 1px solid #FCFCFA; }
+  body #content .monokai .refract-container .skipped-container::after {
+    background-color: #221F22;
+    max-width: 100%; }
+body #content .monokai .refract-container .add-line-comment, body #content .monokai .refract-container .add-line-comment:hover {
+  color: #AB9FF0; }
+  body #content .monokai .refract-container .add-line-comment:focus, body #content .monokai .refract-container .add-line-comment:hover:focus {
+    outline: none; }
+
 #announcement {
   animation: fadeOut 2s ease-out 5s; }
 
@@ -15,8 +101,7 @@
   .bbpr-menu .bbpr-menu-btn {
     -webkit-appearance: button;
     display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 0;
     padding: 6px 12px;
     background-color: #f5f5f5;
     background-image: none;
@@ -32,11 +117,8 @@
     top: 100%;
     right: 0;
     max-height: 0;
-    margin: -1px 0 0;
-    border: 1px solid #ccc;
-    border-top-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
+    margin: 5px 0 0;
+    box-shadow: none;
     padding: 0;
     overflow-y: scroll;
     background-color: #f5f5f5;
@@ -83,7 +165,7 @@ ul.commit-files-summary li.bbpr-reviewed::after,
 .bb-udiff.bbpr-reviewed .bbpr-buttons button .bbpr-done::after {
   display: inline-block;
   padding-left: .5em;
-  color: #0b0;
+  color: #AADB7B;
   content: '✔'; }
 
 .bb-udiff .heading {
