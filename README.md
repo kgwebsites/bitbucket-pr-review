@@ -1,6 +1,6 @@
 This is a forked version of [bitbucket-pr-review](https://github.com/reywood/bitbucket-pr-review) with additional features such as:
 
--   Close all files by a specific file type. (All file types are loaded on init)
+-   Close all files by a specific file extension. (All file extensions are loaded on init)
 -   Bitbucket file titles become sticky so the file action buttons come along for the ride when you're scrolling large files.
 -   Themes!
 

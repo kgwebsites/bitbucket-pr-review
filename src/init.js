@@ -1,8 +1,3 @@
-// Get the theme as set in the extension options
-chrome.storage.sync.get({theme: ''}, ({theme}) => {
-    document.getElementById('pullrequest-diff').classList += theme;
-});
-
 // Initialize File Types Mapping
 const fileTypes = {};
 
@@ -180,21 +175,29 @@ function waitForAnotherChanceFilesLoad(previousAttemptFileCount, tries = 0) {
 }
 
 function init() {
-    const fileDiffs = getAllFileDiffs();
-    fileDiffs.forEach((fileDiff) => {
-        fileDiff.initUI();
-        repeatInitUIToWorkAroundCommentLoadIssue(fileDiff);
-        addFileType(fileDiff.filepath)
-    });
-    initHelperMenu();
+    function initialize() {
+        const fileDiffs = getAllFileDiffs();
+        fileDiffs.forEach((fileDiff) => {
+            fileDiff.initUI();
+            repeatInitUIToWorkAroundCommentLoadIssue(fileDiff);
+            addFileType(fileDiff.filepath)
+        });
+        initHelperMenu();
 
-    waitForAnotherChanceFilesLoad(0);
+        waitForAnotherChanceFilesLoad(0);
 
-    if (window.location.hash.indexOf('#chg-') >= 0) {
-        const identifier = window.location.hash.substring(5);
-        const fileSectionSelector = `#changeset-diff .bb-udiff[data-path="${identifier}"]`;
-        waitForFileSectionLoad(fileSectionSelector);
+        if (window.location.hash.indexOf('#chg-') >= 0) {
+            const identifier = window.location.hash.substring(5);
+            const fileSectionSelector = `#changeset-diff .bb-udiff[data-path="${identifier}"]`;
+            wait
+            ForFileSectionLoad(fileSectionSelector);
+        }
     }
+    // Get the theme as set in the extension options
+    chrome.storage.sync.get({theme: ''}, ({theme}) => {
+        document.getElementById('pullrequest-diff').classList += theme;
+        initialize();
+    });
 }
 
 function isDiffTabActive() {
